@@ -9,11 +9,16 @@ const openMenu = (data = null) => {
             let isMenuHeader = item.isMenuHeader;
             let isDisabled = item.disabled;
             let icon = item.icon;
-            html += getButtonRender(header, message, index, isMenuHeader, isDisabled, icon);
-            if (item.params) buttonParams[index] = item.params;
+            if (isMenuHeader) {
+                let menutitle = getTitleRender(header,icon);
+                $("#menutitle").html(menutitle);
+            } else {
+                html += getButtonRender(header, message, index, isMenuHeader, isDisabled, icon);
+                if (item.params) buttonParams[index] = item.params;
+            }            
         }
     });
-
+   
     $("#buttons").html(html);
 
     $('.button').click(function() {
@@ -36,8 +41,15 @@ const getButtonRender = (header, message = null, id, isMenuHeader, isDisabled, i
     `;
 };
 
+const getTitleRender = (header, icon) => {
+    return `       
+        <div class="icon"> <img src=nui://${icon} width=30px onerror="this.onerror=null; this.remove();"> <i class="${icon}" onerror="this.onerror=null; this.remove();"></i> </div>${header}
+    `;
+};
+
 const closeMenu = () => {
     $("#buttons").html(" ");
+    $("#menutitle").html(" ");
     buttonParams = [];
 };
 

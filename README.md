@@ -3,11 +3,14 @@ Menu System for the QBCore Framework
 
 This is a modified version of **[NH Context](https://forum.cfx.re/t/no-longer-supported-standalone-nerohiro-s-context-menu-dynamic-event-firing-menu/2564083)** by **[NeroHiro](https://github.com/nerohiro)**
 
---[[
-EXAMPLE MENU
---]]
+# Preview: 
 
-```
+![menu](https://user-images.githubusercontent.com/72443203/198830138-b12ef6d1-87fc-49af-8f6a-86cb25ead563.png)
+
+
+`EXAMPLE CREATION OF A MENU`
+
+```lua
 RegisterCommand("qbmenutest", function(source, args, raw)
     openMenu({
         {
@@ -39,7 +42,7 @@ RegisterCommand("qbmenutest", function(source, args, raw)
     })
 end)
 ```
-```
+```lua
 RegisterNetEvent('qb-menu:client:testMenu2', function(data)
     local number = data.number
     openMenu({
@@ -59,7 +62,7 @@ RegisterNetEvent('qb-menu:client:testMenu2', function(data)
     })
 end)
 ```
-```
+```lua
 RegisterNetEvent('qb-menu:client:testButton', function(data)
     TriggerEvent('QBCore:Notify', data.message)
 end)

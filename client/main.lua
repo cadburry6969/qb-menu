@@ -1,6 +1,5 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-
 local headerShown = false
 local sendData = nil
 
@@ -26,6 +25,7 @@ local function openMenu(data)
         data = table.clone(data)
     })
 end
+exports('openMenu', openMenu)
 
 local function closeMenu()
     sendData = nil
@@ -35,6 +35,7 @@ local function closeMenu()
         action = 'CLOSE_MENU'
     })
 end
+exports('closeMenu', closeMenu)
 
 local function showHeader(data)
     if not data or not next(data) then return end
@@ -45,8 +46,7 @@ local function showHeader(data)
         data = table.clone(data)
     })
 end
-
--- Events
+exports('showHeader', showHeader)
 
 RegisterNetEvent('qb-menu:client:openMenu', function(data)
     openMenu(data)
@@ -55,8 +55,6 @@ end)
 RegisterNetEvent('qb-menu:client:closeMenu', function()
     closeMenu()
 end)
-
--- NUI Callbacks
 
 RegisterNUICallback('clickedButton', function(option, cb)
     if headerShown then headerShown = false end
@@ -89,21 +87,122 @@ RegisterNUICallback('closeMenu', function(_, cb)
     sendData = nil
     SetNuiFocus(false)
     cb('ok')
-    TriggerEvent("qb-menu:client:menuClosed")
 end)
 
--- Command and Keymapping
-
-RegisterCommand('playerfocus', function()
+RegisterCommand('+menufocus', function()
     if headerShown then
         SetNuiFocus(true, true)
     end
 end)
+RegisterKeyMapping('+menufocus', 'Focus Menu', 'keyboard', 'LMENU')
 
-RegisterKeyMapping('playerFocus', 'Give Menu Focus', 'keyboard', 'LMENU')
 
--- Exports
-
-exports('openMenu', openMenu)
-exports('closeMenu', closeMenu)
-exports('showHeader', showHeader)
+RegisterCommand("menutest", function(source, args, raw)
+    openMenu({
+        {
+            header = "Online Players",
+            isMenuHeader = true, -- Set to true to make a nonclickable title
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            params = {}
+        },
+        {
+            header = "header title",
+            txt = "description",
+            disabled = true,
+            params = {}
+        },
+    })
+end)
